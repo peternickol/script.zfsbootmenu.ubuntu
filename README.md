@@ -47,6 +47,10 @@ bash secondary.sh
 
 You will need to set a root password and select timezones. Since this is a bare install you need to install at lease one locale. Navigate the list until you find "en_US.UTF-8 UTF-8" and then make it your default. The other questions you can simply use the default options. You will be asked again durring the systems first boot. 
 
+![1](/docs/locale1.png)
+
+![1](/docs/locale2.png)
+
 6.)  Once secondary.sh completes you will be left at a prompt in case you want to do any more changes to the final system. If not then just exit
 
 ~~~
