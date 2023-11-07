@@ -8,16 +8,21 @@ The author of this script is not responsible for any damage or loss that may occ
 ### This a simple script for creating a ZFS Ubuntu installation using ZFS Boot Menu. 
 
 The script is primarily a compilation of the instructions on the ZFSBootMenu website. 
+
 <https://docs.zfsbootmenu.org/en/latest/guides/ubuntu/uefi.html>
 
 With some changes from the OpenZFS website.
+
 <https://openzfs.github.io/openzfs-docs/Getting%20Started/Ubuntu/Ubuntu%2022.04%20Root%20on%20ZFS.html>
 
-It supports a singe disk and dual drive ZFS mirror configurations. It also supports a seprate /var device.
+
+At this time it this scripts supports a singe disk and ZFS mirror configurations. It also supports a seperate /var device.
 
 This was made for a specific use case and will probably never be finished. 
 
-1.) To use the script boot up the system into an Ubuntu Desktop 22.04 Installer and select "Try Ubuntu"
+<hr>
+
+1.) To use the script boot up the system into an Ubuntu Desktop 22.04 Installer and select "Try Ubuntu". It is recomended to have a copy of this scipt on a second USB drive.
 
 2.) Open a terminal and determine your disk configuration 
 
@@ -27,10 +32,69 @@ lsblk
 
 3.) Edit the script for use your specific needs
 
-populate the variable to suit your needs
+This script has severa configurable options. 
+
+HOSTNAME is your desired hostname on the finished system.
 
 ~~~
-MIRRORENABLED
+HOSTNAME=spc-dual1
+~~~
+
+MIRRORENABLED is if the systems should create a mirrored pool 
+
+~~~
+export MIRRORENABLED=yes
+~~~
+
+VARDEVICEENABLED is if the system has a sepercate /var device on another disk
+
+~~~
+export VARDEVICEENABLED=yes
+~~~
+
+BOOT_DISK1 is the primary device where your /boot directory is located. This is where ZFSBootMenu will be installed and will NOT be a part of a ZFS pool. 
+BOOT_PART1 is the partition the the /boot will be located. This will almost always be 1
+
+~~~
+export BOOT_DISK1="/dev/sda"
+export BOOT_PART1="1"
+~~~
+
+BOOT_DISK2 is the drive the will be used if in a mirror for the backup installation of ZFSBootMenu.
+
+~~~
+export BOOT_DISK2="/dev/sdb"
+export BOOT_PART2="1"
+~~~
+
+POOL_DISK1 is the drive where your main XFS zroot partition will live
+POOL_PART is the partition that zroot will be created. This is set to 2 because it is sharing the same device as the boot disk. If it is alone then it would be a 1
+
+~~~
+export POOL_DISK1="/dev/sda"
+export POOL_PART1="2"
+~~~
+
+POOL_DISK2 is the drive the will be used if in a mirror for the zroot.
+
+~~~
+export POOL_DISK2="/dev/sdb"
+export POOL_PART2="2"
+~~~
+
+VAR_DISK1 is the drive that the /var partition and zvar pool will be stored.
+VAR_PART1 is the partition on that drive. (Notice the NVME disks list partiton differently than SATA and thus it is p1)
+
+~~~
+export VAR_DISK1="/dev/nvme0n1"
+export VAR_PART1="p1"
+~~~
+
+VAR_DISK2  is the drive the will be used if in a mirror for the zvar.
+
+~~~
+export VAR_DISK2="/dev/nvme1n1"
+export VAR_PART2="p1"
 ~~~
 
 4.) Navigate terminal to the script directory and start the script. THIS WILL WIPE DATA!!!
@@ -49,7 +113,7 @@ You will need to set a root password and select timezones. Since this is a bare 
 
 ![1](/docs/locale1.png)
 
-![1](/docs/locale2.png)
+![2](/docs/locale2.png)
 
 6.)  Once secondary.sh completes you will be left at a prompt in case you want to do any more changes to the final system. If not then just exit
 
