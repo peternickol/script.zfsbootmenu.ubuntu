@@ -62,7 +62,7 @@ export BOOT_DISK2="/dev/sdb"
 export BOOT_PART2="1"
 ~~~
 
-POOL_DISK1 is the drive where your main XFS zroot partition will live
+POOL_DISK1 is the drive where your main ZFS zroot partition will live
 
 POOL_PART is the partition that zroot will be created. This is set to 2 because it is sharing the same device as the boot disk. If it is alone then it would be a 1
 
