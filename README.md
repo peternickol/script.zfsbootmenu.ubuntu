@@ -26,7 +26,7 @@ This was made for a specific use case and will probably never be finished.
 
 ### 2.) Open a terminal and determine your disk configuration then edit the script for use your specific needs
 
-This script has severa configurable options. 
+This script has several configurable options:
 
 HOSTNAME is your desired hostname on the finished system.
 
