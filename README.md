@@ -112,7 +112,7 @@ You will need to set a root password and select timezones. Since this is a bare 
 
 ![2](/docs/locale2.png)
 
-### 5.)  Once secondary.sh completes you will be left at a prompt in case you want to do any more changes to the final system. If not then just exit.
+### 5.)  Once secondary.sh completes you will be left at a prompt in case you want to do any more changes to the final system. If not then just exit and once the script completes exporting the ZFS pools reboot.
 
 ~~~
 exit
