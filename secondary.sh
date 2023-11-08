@@ -101,6 +101,6 @@ efibootmgr -c -d "$BOOT_DISK1" -p "$BOOT_PART1" \
   -L "ZFSBootMenu" \
   -l '\EFI\ZBM\VMLINUZ.EFI'
   
-echo Please preform any final configuration your new installation and then exit to complete...  
+echo Please preform any final configuration on your new installation and then exit to complete...  
   
 exit
